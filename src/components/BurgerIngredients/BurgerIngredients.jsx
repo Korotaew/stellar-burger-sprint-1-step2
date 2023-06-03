@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PropTypes from 'prop-types';
 import {ingredientTypes} from '../../utils/prop-types'
 import { Tab, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './Ingredients.module.css';
-import { getIngredients } from "../../utils/api";
+import { getBunIngredients, getSauceIngredients, getMainIngredients } from "../../utils/ingredients";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
 
 const BurgerIngredients = ({ data, openModal }) => {
@@ -13,19 +13,9 @@ const BurgerIngredients = ({ data, openModal }) => {
     setSelectedIngredient(ingredient);
   }
 
-  const [ingredients, setIngredients] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await getIngredients();
-      setIngredients(result);
-    };
-    fetchData();
-  }, []);
-
-  const bunIngredients = ingredients.filter((ingredient) => ingredient.type === 'bun');
-  const sauceIngredients = ingredients.filter((ingredient) => ingredient.type === 'sauce');
-  const mainIngredients = ingredients.filter((ingredient) => ingredient.type === 'main');
+  const bunIngredients = getBunIngredients();
+  const sauceIngredients = getSauceIngredients();
+  const mainIngredients = getMainIngredients();
 
     return (
       <div className={styles.content}>
@@ -90,7 +80,7 @@ const BurgerIngredients = ({ data, openModal }) => {
   };
 
   BurgerIngredients.propTypes = {
-    data: PropTypes.arrayOf(ingredientTypes)
+    data: PropTypes.arrayOf(ingredientTypes).isRequired
 };
 
 export default BurgerIngredients;
