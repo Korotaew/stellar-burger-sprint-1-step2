@@ -14,13 +14,11 @@ const Modal = ({ onClose, isHeaderShow, children }) => {
   // добавляем обработчик события при открытии модального окна
   useEffect(() => {
     addEventESC();
-
-    // возвращаем функцию для удаления обработчика события при размонтировании компонента
+  
     return () => {
       removeEventESC();
     };
-  });
-
+  }, []); // передан пустой массив
   return ReactDOM.createPortal(
     (
       <div className={styles.wrapper}>
