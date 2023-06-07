@@ -2,34 +2,41 @@ import React, { useState, useEffect } from "react";
 import Appheader from './components/AppHeader/Appheader';
 import BurgerIngredients from "./components/BurgerIngredients/BurgerIngredients";
 import BurgerConstructor from "./components/BurgerConstructor/BurgerConstructor";
-import { getIngredients } from "./utils/api";
-
+import { fetchIngredients, getBunIngredients, getSauceIngredients, getMainIngredients } from "./utils/ingredients";
+import styles from './App.module.css'
 function App() {
-  const [ingredients, setIngredients] = useState([]);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
-    getIngredients()
-      .then((data) => {
-        setIngredients(data);
-      })
-      .catch((error) => {
-        console.error(error);
+    const fetchData = async () => {
+      try {
+        await fetchIngredients();
+        setIngredients([...getBunIngredients(), ...getSauceIngredients(), ...getMainIngredients()]);
+        setIsLoading(false);
+      } catch (error) {
         setError(error.message);
-      });
+        setIngredients([]);
+        setIsLoading(false);
+      }
+    };
+    fetchData();
   }, []);
 
   return (
     <div>
       <>
         <Appheader />
-        {error ? (
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : error ? (
           <div>{error}</div>
         ) : (
-          <>
-            <BurgerIngredients ingredients={ingredients} />
+          <div className={styles.content}>
+            <BurgerIngredients data={ingredients} />
             <BurgerConstructor />
-          </>
+          </div>
         )}
       </>
     </div>
