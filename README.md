@@ -1,6 +1,11 @@
 # Stellar-burger project (sprint1/step2)
 
-Yandex practicum project
+Yandex practicum project on React.js
+
+## To launch just enter:
+
+### `npm install`
+### `npm start`
 
 ## looks like this
 
