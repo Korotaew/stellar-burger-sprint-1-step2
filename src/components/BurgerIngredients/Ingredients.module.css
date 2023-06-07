@@ -1,0 +1,50 @@
+.content {
+    float: left;
+}
+
+.title {
+    margin-left: 340px;
+}
+.tabs {
+    margin-left: 340px;
+    margin-top: 20px;
+}
+
+.list {
+
+    list-style: none;
+    width: 600px;
+    composes: custom-scroll from global;
+    overflow-y: scroll;
+    margin-left: 300px;
+    height: 640px;
+  }
+  
+.item {
+    padding: 10px;
+    display: inline-block; 
+    width: 40%; /* задаем ширину элементов */
+    margin: 12px;
+
+}
+.itemText {
+    font-family: 'JetBrainsMono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+
+    text-align: center;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.name {
+    max-height: 48px;
+    max-width: 272px;
+    transition: color 0.3s ease-out;
+}

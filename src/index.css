@@ -1,0 +1,22 @@
+body {
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: 'JetBrainsMono';
+  font-style: normal;
+  font-weight: 700;
+  src: url("./fonts/JetBrainsMono/JetBrainsMono-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'JetBrainsMono';
+  font-style: normal;
+  font-weight: 400;
+  src: url("./fonts/JetBrainsMono/JetBrainsMono-Regular.woff") format("woff");
+}
+
+.constructor-element {
+  background: #1C1C21 !important;
+}
+
